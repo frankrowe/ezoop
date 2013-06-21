@@ -3,7 +3,7 @@ ezoop
 
 ezoop gives js proper oop
 
-### Base Class
+### Example Base Class
 ```javascript
 MyBaseClass = ezoop.BaseClass({
   name: 'a base class',
@@ -19,7 +19,7 @@ MyBaseClass = ezoop.BaseClass({
 });
 ```
 
-### Extended Class
+### Example Extended Class
 ```javascript
 MyExtendedClass = ezoop.ExtendedClass(MyBaseClass, {
   name: 'an extended class',
@@ -32,7 +32,7 @@ MyExtendedClass = ezoop.ExtendedClass(MyBaseClass, {
 });
 ```
 
-### Example
+### Example Output
 ```javascript
   var myBaseClass = new MyBaseClass();
   var myExtendedClass = new MyExtendedClass();

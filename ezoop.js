@@ -17,8 +17,6 @@ ezoop.BaseClass = function(properties) {
 }
 
 ezoop.Class = function (parentClass, childClass) {
-  var ch = childClass;
-  var p = parentClass;
   var _class_ = null;
   var self = ezoop.Class;
   if (parentClass == null || typeof parentClass == 'undefined') {

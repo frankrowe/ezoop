@@ -32,6 +32,7 @@ MyExtendedClass = ezoop.ExtendedClass(MyBaseClass, {
 });
 ```
 
+### Example
 ```javascript
   var myBaseClass = new MyBaseClass();
   var myExtendedClass = new MyExtendedClass();

@@ -8,11 +8,6 @@ ezoop.noConflict = function () {
 
 window.ezoop = ezoop;
 
-/*
-Class name: Class
-Description: implements inheritance
-*/
-
 ezoop.SubClass = function(parentClass, properties) {
   ezoop.Class(parentClass, properties);
 }

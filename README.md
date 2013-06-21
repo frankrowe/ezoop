@@ -16,7 +16,6 @@ MyBaseClass = ezoop.BaseClass({
   status: function() {
     console.log('base classes are awesome.');
   }
-}
 });
 ```
 

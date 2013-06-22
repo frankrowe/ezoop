@@ -16,7 +16,7 @@ ezoop.BaseClass = function(properties) {
   return ezoop.Class(null, properties);
 }
 
-ezoop.Class = function (parentClass, childClass) {
+ezoop.Class = function (parentClass, properties) {
   var newClass = null;
   var self = ezoop.Class;
   if (parentClass == null || typeof parentClass == 'undefined') {
@@ -25,7 +25,7 @@ ezoop.Class = function (parentClass, childClass) {
         this.initialize.apply(this, arguments);
       }
     }
-    newClass.prototype = childClass;
+    newClass.prototype = properties;
   }
   else {
     newClass = function () {
@@ -41,7 +41,7 @@ ezoop.Class = function (parentClass, childClass) {
         }
     }
     self.inheritPrototype(newClass, parentClass);
-    self.augmentPrototype(newClass.prototype, childClass);
+    self.augmentPrototype(newClass.prototype, properties);
   }
   return newClass;
 }
@@ -54,18 +54,16 @@ ezoop.Class.inheritPrototype = function (child, parent) {
   child.parent = parent.prototype;
 }
 
-ezoop.Class.augmentPrototype = function (child, parent) {
-  child = child || {};
-  if (parent) {
-    for (var property in parent) {
-      var value = parent[property];
-      if (value !== undefined) {
-        child[property] = value;
-      }
+ezoop.Class.augmentPrototype = function (prototype, properties) {
+  prototype = prototype || {};
+  for (var property in properties) {
+    var value = properties[property];
+    if (value !== undefined) {
+      prototype[property] = value;
     }
-    var sourceIsEvt = typeof window.Event == "function" && parent instanceof window.Event;
-    if (!sourceIsEvt && parent.hasOwnProperty && parent.hasOwnProperty("toString")) {
-      child.toString = parent.toString;
-    }
+  }
+  var sourceIsEvt = typeof window.Event == "function" && parent instanceof window.Event;
+  if (!sourceIsEvt && properties.hasOwnProperty && properties.hasOwnProperty("toString")) {
+    prototype.toString = properties.toString;
   }
 }

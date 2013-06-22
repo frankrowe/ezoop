@@ -17,21 +17,21 @@ ezoop.BaseClass = function(properties) {
 }
 
 ezoop.Class = function (parentClass, childClass) {
-  var _class_ = null;
+  var newClass = null;
   var self = ezoop.Class;
   if (parentClass == null || typeof parentClass == 'undefined') {
-    _class_ = function () {
-      if (typeof this.initialize != 'undefined') {
+    newClass = function () {
+      if (typeof this.initialize !== 'undefined') {
         this.initialize.apply(this, arguments);
       }
     }
-    _class_.prototype = childClass;
+    newClass.prototype = childClass;
   }
   else {
-    _class_ = function () {
-      if (typeof parentClass.prototype != 'undefined') {
+    newClass = function () {
+      if (typeof parentClass.prototype !== 'undefined') {
         var parentInit = parentClass.prototype.initialize;
-        if (typeof parentInit == 'function') {
+        if (typeof parentInit === 'function') {
           parentInit.apply(this, arguments);
         }
       }
@@ -40,16 +40,16 @@ ezoop.Class = function (parentClass, childClass) {
           init.apply(this, arguments);
         }
     }
-    self.inheritPrototype(_class_, parentClass); //inherit prototype
-    self.augmentPrototype(_class_.prototype, childClass); //augment prototype
+    self.inheritPrototype(newClass, parentClass);
+    self.augmentPrototype(newClass.prototype, childClass);
   }
-  return _class_;
+  return newClass;
 }
 
 ezoop.Class.inheritPrototype = function (child, parent) {
-  var f = function () { };
-  f.prototype = parent.prototype;
-  child.prototype = new f();
+  var temp = function () {};
+  temp.prototype = parent.prototype;
+  child.prototype = new temp();
   child.prototype.constructor = child;
   child.parent = parent.prototype;
 }

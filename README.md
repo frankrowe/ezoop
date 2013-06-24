@@ -1,4 +1,4 @@
-ezoop
+ezoop.js
 =====
 
 ezoop gives js proper oop

@@ -17,59 +17,63 @@
     <ul id="test"></ul>
   </div>
   <script>
-    function assert(condition, message) {
-      if(condition) {
-        message += ': ' + '<span class="pass">Passed.</span>';
-      } else {
-        message += ': ' + '<span class="fail">Failed.</span>';
+    (function(){
+      var assert = {};
+      
+      assert.equal = function(actual, expected, message) {
+        if(actual === expected) {
+          message += ': ' + '<span class="pass">Passed.</span>';
+        } else {
+          message += ': ' + '<span class="fail">Failed.</span>';
+        }
+        message = '<li>' + message + '</li>'
+        document.getElementById("test").innerHTML += message;
       }
-      message = '<li>' + message + '</li>'
-      document.getElementById("test").innerHTML += message;
-    }
 
-    MyBaseClass = ezoop.BaseClass({
-      name: 'a base class',
-      initialize: function(arguments) {
-        this.arguments = arguments;
-      },
-      hello: function(){
-        return "i'm " + this.name + "!";
-      },
-      opinion: function() {
-        return 'base classes are awesome.';
-      }
-    });
+      MyBaseClass = ezoop.BaseClass({
+        name: 'a base class',
+        initialize: function(arguments) {
+          this.arguments = arguments;
+        },
+        hello: function(){
+          return "i'm " + this.name + "!";
+        },
+        opinion: function() {
+          return 'base classes are awesome.';
+        }
+      });
 
-    MyExtendedClass = ezoop.ExtendedClass(MyBaseClass, {
-      name: 'an extended class',
-      opinion: function() {
-        return 'extended classes are extended awesome.';
-      },
-      extendedFunction: function(){
-        return 'extended function';
-      }
-    });
+      MyExtendedClass = ezoop.ExtendedClass(MyBaseClass, {
+        name: 'an extended class',
+        opinion: function() {
+          return 'extended classes are extended awesome.';
+        },
+        extendedFunction: function(){
+          return 'extended function';
+        }
+      });
 
-    MyThirdClass = ezoop.ExtendedClass(MyExtendedClass, {
-      opinion: function() {
-        return "i'm extended from an extended class";
-      },
-      extendedFunction: function(){
-        return 'third class inherited function';
-      }
-    })
+      MyThirdClass = ezoop.ExtendedClass(MyExtendedClass, {
+        opinion: function() {
+          return "i'm extended from an extended class";
+        },
+        extendedFunction: function(){
+          return 'third class inherited function';
+        }
+      })
 
-    var myBaseClass = new MyBaseClass();
-    var myExtendedClass = new MyExtendedClass();
-    var myThirdClass = new MyThirdClass();
+      var myBaseClass = new MyBaseClass();
+      var myExtendedClass = new MyExtendedClass();
+      var myThirdClass = new MyThirdClass();
 
-    assert(myBaseClass.hello() === "i'm a base class!", 'BaseClass Function Test.');
-    assert(myExtendedClass.hello() === "i'm an extended class!", 'ExtendedClass Inherited Function Test.');
-    assert(myBaseClass.opinion() === "base classes are awesome.", 'BaseClass Override Function Test.');
-    assert(myExtendedClass.opinion() === "extended classes are extended awesome.", 'ExtendedClass Override Function Test.');
-    assert(myExtendedClass.extendedFunction() === "extended function", 'ExtendedClass Additional Function Test.');
-    assert(myThirdClass.opinion() === "i'm extended from an extended class", 'Override Extended + Inherited Function Test.');
-    assert(myThirdClass.extendedFunction() === "third class inherited function", 'Override Extended Function Test.');
+      assert.equal(myBaseClass.hello(), "i'm a base class!", 'BaseClass Function Test.');
+      assert.equal(myExtendedClass.hello(), "i'm an extended class!", 'ExtendedClass Inherited Function Test.');
+      assert.equal(myBaseClass.opinion(), "base classes are awesome.", 'BaseClass Override Function Test.');
+      assert.equal(myExtendedClass.opinion(), "extended classes are extended awesome.", 'ExtendedClass Override Function Test.');
+      assert.equal(myExtendedClass.extendedFunction(), "extended function", 'ExtendedClass Additional Function Test.');
+      assert.equal(myThirdClass.opinion(), "i'm extended from an extended class", 'Override Extended + Inherited Function Test.');
+      assert.equal(myThirdClass.extendedFunction(), "third class inherited function", 'Override Extended Function Test.');
+    })();
   </script>
 </body>
 </html>

@@ -1,0 +1,58 @@
+<html>
+<link rel="stylesheet" href="http://localhost/dashboards/show/show.css">
+<script src="http://localhost/dashboards/show/show.js"></script>
+<script src="../ezoop.js"></script>
+<body>
+  <script>
+    (function(){
+
+      MyBaseClass = ezoop.BaseClass({
+        name: 'a base class',
+        initialize: function(arguments) {
+          this.arguments = arguments;
+        },
+        hello: function(){
+          return "i'm " + this.name + "!";
+        },
+        opinion: function() {
+          return 'base classes are awesome.';
+        }
+      });
+
+      MyExtendedClass = ezoop.ExtendedClass(MyBaseClass, {
+        name: 'an extended class',
+        opinion: function() {
+          return 'extended classes are extended awesome.';
+        },
+        extendedFunction: function(){
+          return 'extended function';
+        }
+      });
+
+      MyThirdClass = ezoop.ExtendedClass(MyExtendedClass, {
+        opinion: function() {
+          return "i'm extended from an extended class";
+        },
+        extendedFunction: function(){
+          return 'third class inherited function';
+        }
+      })
+
+      var myBaseClass = new MyBaseClass();
+      var myExtendedClass = new MyExtendedClass();
+      var myThirdClass = new MyThirdClass();
+
+      show(function(){
+        show.equal(myBaseClass.hello(), "i'm a base class!", 'BaseClass Function Test');
+        show.equal(myExtendedClass.hello(), "i'm an extended class!", 'ExtendedClass Inherited Function Test');
+        show.equal(myBaseClass.opinion(), "base classes are awesome.", 'BaseClass Override Function Test');
+        show.equal(myExtendedClass.opinion(), "extended classes are extended awesome.", 'ExtendedClass Override Function Test');
+        show.equal(myExtendedClass.extendedFunction(), "extended function", 'ExtendedClass Additional Function Test');
+        show.equal(myThirdClass.opinion(), "i'm extended from an extended class", 'Override Extended + Inherited Function Test');
+        show.equal(myThirdClass.extendedFunction(), "third class inherited function", 'Override Extended Function Test');
+      });
+
+    })();
+  </script>
+</body>
+</html>

@@ -63,13 +63,13 @@
     var myExtendedClass = new MyExtendedClass();
     var myThirdClass = new MyThirdClass();
 
-    assert(myBaseClass.hello() === "i'm a base class!", 'BaseClass Test.');
-    assert(myExtendedClass.hello() === "i'm an extended class!", 'ExtendedClass Test.');
-    assert(myBaseClass.opinion() === "base classes are awesome.", 'BaseClass Test.');
-    assert(myExtendedClass.opinion() === "extended classes are extended awesome.", 'ExtendedClass Test.');
-    assert(myExtendedClass.extendedFunction() === "extended function", 'ExtendedClass Test.');
-    assert(myThirdClass.opinion() === "i'm extended from an extended class", 'MyThirdClass Test.');
-    assert(myThirdClass.extendedFunction() === "third class inherited function", 'MyThirdClass Test.');
+    assert(myBaseClass.hello() === "i'm a base class!", 'BaseClass Function Test.');
+    assert(myExtendedClass.hello() === "i'm an extended class!", 'ExtendedClass Inherited Function Test.');
+    assert(myBaseClass.opinion() === "base classes are awesome.", 'BaseClass Override Function Test.');
+    assert(myExtendedClass.opinion() === "extended classes are extended awesome.", 'ExtendedClass Override Function Test.');
+    assert(myExtendedClass.extendedFunction() === "extended function", 'ExtendedClass Additional Function Test.');
+    assert(myThirdClass.opinion() === "i'm extended from an extended class", 'Override Extended + Inherited Function Test.');
+    assert(myThirdClass.extendedFunction() === "third class inherited function", 'Override Extended Function Test.');
   </script>
 </body>
 </html>

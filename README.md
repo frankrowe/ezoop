@@ -13,7 +13,7 @@ MyBaseClass = ezoop.BaseClass({
   hello: function(){
     console.log("i'm " + this.name + "!");
   },
-  status: function() {
+  opinion: function() {
     console.log('base classes are awesome.');
   }
 });
@@ -26,7 +26,7 @@ MyExtendedClass = ezoop.ExtendedClass(MyBaseClass, {
   initialize: function(arguments) {
     this.arguments = arguments;
   },
-  status: function() {
+  opinion: function() {
     console.log('extended classes are extended awesome.');
   }
 });
@@ -40,5 +40,5 @@ MyExtendedClass = ezoop.ExtendedClass(MyBaseClass, {
   myBaseClass.hello();       // i'm a base class!
   myExtendedClass.hello();   // i'm an extended class!
   myBaseClass.opinion();     // base classes are awesome.
-  extendedClass.opintion();  // extended classes are extended awesome.
+  myExtendedClass.opinion();  // extended classes are extended awesome.
 ```
